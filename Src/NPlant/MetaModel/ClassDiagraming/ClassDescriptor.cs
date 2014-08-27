@@ -151,7 +151,7 @@ namespace NPlant.MetaModel.ClassDiagraming
 
         public TypeMetaModel MetaModel { get; private set; }
 
-        public string Color { get; private set; }
+        public string Color { get; set; }
 
         public override int GetHashCode()
         {

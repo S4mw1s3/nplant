@@ -7,6 +7,7 @@ namespace NPlant.MetaModel.ClassDiagraming
 {
     public class ClassWriter : IDescriptorWriter
     {
+        private const string PLANTUML_COLOR_PREFIX = "#";
         private ClassDiagram _diagram;
         private readonly ClassDescriptor _class;
 
@@ -19,10 +20,12 @@ namespace NPlant.MetaModel.ClassDiagraming
         public string Write(ClassDiagramVisitorContext context)
         {
             string color = _class.Color ?? _diagram.GetClassColor(_class);
+            if (!string.IsNullOrEmpty(color))
+                color = PLANTUML_COLOR_PREFIX + color;
 
             StringBuilder buffer = new StringBuilder();
 
-            buffer.AppendLine(string.Format("    class \"{0}\"{1} {2}", _class.Name, color, "{"));
+            buffer.AppendLine(string.Format("    class \"{0}\" {1} {2}", _class.Name, color, "{"));
 
             var definedMembers = _class.Members.InnerList.Where(x => !x.IsInherited).OrderBy(x => x.Name).ToArray();
 

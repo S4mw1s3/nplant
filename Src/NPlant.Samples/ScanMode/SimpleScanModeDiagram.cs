@@ -9,7 +9,7 @@ namespace NPlant.Samples.ScanMode
         public SimpleScanModeDiagram()
         {
             base.GenerationOptions.ScanModeOf(ClassDiagramScanModes.AllMembers);
-            AddClass<Foo>();
+            AddClass<Foo>().Color = "red";
         }
     }
 
